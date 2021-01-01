@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% block body %}
+<section class="main-banner">
+    <div class="section-heading">
+        <h1>Donate us</h1>
+    </div>
+    <p class="text-secondary" style='font-size:18px'>
+        <b>ConnecTheShelf</b> helps those who are not able to buy the essential books for their studies.
+        <br>
+        <b>You </b> can help us by donating a book which you may not need in future.
+    </p>
+    <h3 class="text-danger">We do not make any kind of money from the donatad books. You can contact us anytime to get information about your donated book.</h3>
+    <section class="contact-form">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="section-heading">
+                    <h1 class="p-2 text-center">Make a request</h1>
+                </div>
+                <div class="Error col-md-12">
+                    <p class="text-danger" style="text-transform: capitalize;"></p>
+                </div>
+                <div class="col-md-12">
+                    <form action="/donate" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <input type="text" name='name' required placeholder="Your name...">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <input type="email" name='email' required placeholder="Your email....">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <input type="tel" name='contact' required placeholder="Your contact....">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <textarea name="address" id="" cols="30" required rows="10" placeholder="Your address..."></textarea>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <textarea name="books" id="" cols="30" required rows="10" placeholder="Book name with authors..."></textarea>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <button type="submit" id="form-submit" class="button">Donate</button>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+{% endblock %}

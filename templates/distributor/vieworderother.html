@@ -1,0 +1,131 @@
+{% extends 'base.html' %} {% block body %}
+<section class="main-banner">
+    <section class="tables">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>{{orderId}}</h2>
+                    </div>
+                    <div class="default-table">
+                        <table class='ordertable'>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Author</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ord in orders %}
+                                <tr>
+                                    <td>{{ord.bookid.name}}</td>
+                                    <td>{{ord.bookid.author}}</td>
+                                    <td class="price">{{ord.price}}</td>
+                                    <td class="quantity">{{ord.quantity}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <th colspan='2'>Total price</th>
+                                    <th id='totalprice'>0</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="forms">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>Other details</h2>
+                    </div>
+                    <div class="Error col-md-12">
+
+                    </div>
+                    <form id="orderform" action="/distributor/vieworders" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <label>Name:</label>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <input type="text" value="{{order.reader.name}}" readonly>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <label>Email:</label>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <input type="text" value="{{order.reader.email}}" readonly>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <label>Contact:</label>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <input type="text" value="{{order.reader.contact}}" readonly>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12 col-sm-12 ">
+                                <fieldset>
+                                    <label for="address">Delivery address</label>
+                                </fieldset>
+                            </div>
+                            <div class="col-12 ">
+                                <textarea id="address" placeholder="Delivery address" rows="6" readonly>{{order.deliveryaddress}}</textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <label for="photo">Payment screenshot:</label>
+
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <div class="filled-rectangle-button">
+                                        <a href="/media/{{url}}" target="_blank">View</a>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <label for="status">Status</label>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <input type="text" name='status' value="{{order.status}}">
+                                    <input type="text" name='orderId' class="d-none" value="{{orderId}}">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12 ">
+                                <button type="submit" id="form-submit" class="button">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+{% endblock %} {% block script %}
+<script src='/static/assets/js/vieworder.js'></script>
+{% endblock %}

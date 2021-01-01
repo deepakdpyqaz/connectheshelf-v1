@@ -1,0 +1,111 @@
+{% extends 'base.html' %} {% block body %}
+<section class="forms" id="signup">
+    <div class="container-fluid">
+        <div class="row my-1">
+            <fieldset class="bg-secondary col-md-12">
+                <label for="code" class="col-md-4 py-1 my-1 text-white">Referal code</label>
+                <input type="text" class='col-md-4 py-1 my-1' id='code' value={{ref.coupon}} readonly>
+                <button class="btn btn-primary py-1 my-1 col-md-2" id="copybutton"> Copy </button>
+            </fieldset>
+            <h2 class="text-primary col-md-3 my-0 py-2">Used by: {{ref.used_by}}</h2>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h1 class='my-3 h1 text-center'>PROFILE</h1>
+                </div>
+
+                <form id="contact" action="/reader/profile" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label class="text-center" for="name">Name:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="name" type="text" class="form-control" id="name" value='{{reader.name}}' placeholder="Your name..." required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label class="text-center" for="email">Email:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="email" type="text" class="form-control" value="{{reader.email}}" id="email" placeholder="Your email..." required="" readonly>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label class="text-center" for="contact">contact:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="contact" type="text" class="form-control" value="{{reader.contact}}" id="contact" placeholder="Your contact..." required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label class="text-center" for="username">Username:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="username" type="text" value='{{reader.username}}' ' class="form-control" id="username" placeholder="Your username..." required="" readonly>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label class="text-center" for="password">Password:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="password" type="password" value="{{reader.password}}" class="form-control" id="password" placeholder="Your password..." required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label class="text-center" for="age">Age:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="age" type="number" value={{reader.age}} class="form-control" id="age" placeholder="Your age..." required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="address">Permanent Address</label>
+                        </div>
+                        <div class="col-md-12">
+                            <fieldset>
+                                <textarea name="address" class="form-control" id="address" placeholder="Add your permanent address..."> {{reader.address}}</textarea></fieldset>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="button">Update profile</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock%}
+{% block script %}
+<script>
+    var text = document.getElementById("code");
+    var copybtn = document.getElementById("copybutton");
+    copybtn.addEventListener("click", function () {
+        text.select();
+        text.setSelectionRange(0, 99999); /* For mobile devices */
+        document.execCommand("copy");
+        alert("copied the text")
+    })
+</script>
+{% endblock %}

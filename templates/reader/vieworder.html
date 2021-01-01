@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block body %}
+<section class="tables">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h2>{{orderId}}</h2>
+                    <h3>Status:{{status}}</h3>
+                </div>
+                <div class="default-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Author</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ord in order reversed %}
+                            <tr>
+                                <td>{{ord.bookid.name}}</td>
+                                <td>{{ord.bookid.author}}</td>
+                                <td>{{ord.quantity}}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

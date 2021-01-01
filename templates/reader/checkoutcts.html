@@ -1,0 +1,91 @@
+{% extends 'base.html' %} {% block body %}
+<section class="main-banner">
+    <section class="tables">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>Your orders</h2>
+                        <h3><span id='dist'> {{distributor}}</span> payment interface</h3>
+                    </div>
+                    <div class="default-table">
+                        <table class='ordertable'>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <th colspan='2'>Total price</th>
+                                    <th id='totalprice'>0</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="forms">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>Fill the details</h2>
+                    </div>
+                    <div class="Error col-md-12">
+
+                    </div>
+                    <form id="orderform" action="/reader/checkout/{{distributor}}" method="post" class='ctsform'>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <input name="coupon" type="text" class="form-control" id="coupon" placeholder="Coupon (if any) ">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-4 col-sm-4 ">
+                                <div class="radio-item ">
+                                    <input name="old" type="checkbox" id="old" value="1">
+                                    <label for="old">Provide me old books(if possible)</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 ">
+                                <div class="radio-item ">
+                                    <input name="express" type="checkbox" id="express" value="1">
+                                    <label for="express">Need urgent delivery</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 ">
+                                <fieldset>
+                                    <label for="address">Your delivery address</label>
+                                </fieldset>
+                            </div>
+                            <div class="col-12 ">
+                                <textarea name="address" id="address" placeholder="Delivery address" rows="6" required>{{address}}</textarea>
+                            </div>
+                            <div class="col-12 d-none">
+                                <textarea name="orders" id="orders"></textarea>
+                            </div>
+                            <div class="col-md-12 ">
+                                <button type="submit" id="form-submit" class="button">Order</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+{% endblock %} {% block script %}
+<script src='/static/assets/js/payment.js'></script>
+{% endblock %}

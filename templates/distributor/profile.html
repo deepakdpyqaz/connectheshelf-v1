@@ -1,0 +1,91 @@
+{% extends 'base.html' %} {% block body %}
+<section class="forms">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h1>Profile</h1>
+                </div>
+                <div class="Error col-md-12">
+                    <p class="text-danger" style="text-transform: capitalize;"></p>
+                </div>
+                <form id="contact" action="/distributor/" class="jsform" method="post">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label>Username:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input type="text" class="form-control" placeholder="Your name..." required="" value={{dist.username}} readonly>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="password">Password:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="password" type="text" class="form-control" placeholder="Your password..." required="" value={{dist.password}}>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="name">Name:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="name" type="text" class="form-control" placeholder="Your name..." required="" value={{dist.name}}>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label>Email:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input type="text" class="form-control" placeholder="Your email..." readonly value={{dist.email}}>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label>Contact:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input type="text" name="contact" class="form-control" placeholder="Your contact..." required="" value={{dist.contact}}>
+                            </fieldset>
+                        </div>
+                        <div class="col-12">
+                            <textarea name="address" placeholder="address" rows="6">{{dist.address}}</textarea>
+                        </div>
+                        <div class="col-12">
+                            <textarea name="paymentinfo" placeholder="payment info" rows="6">{{payment.paymentinfo}}</textarea>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="radio-item">
+                                {% if payment.cod %}
+                                <input name="cod" type="checkbox" id="cod" value="1" checked> {% else %}
+                                <input name="cod" type="checkbox" id="cod" value="1"> {% endif %}
+                                <label for="cod">Accept cash on delivery</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="submit" id="form-submit" class="button">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %} {% block script %}
+<script src="/static/assets/js/form.js"></script>
+{% endblock %}

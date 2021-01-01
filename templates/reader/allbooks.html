@@ -1,0 +1,301 @@
+{% extends 'base.html' %} {% block style %}
+<style>
+    #linkcart {
+        position: fixed;
+        z-index: 1000;
+        bottom: 0%;
+        right: 0%;
+        transform: translate(-50%, -50%);
+        width: 10vw;
+        height: 10vh;
+        border-radius: 100%;
+        background: cornsilk;
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #linkcart:hover {
+        box-shadow: 0px 0px 10px 2px black;
+    }
+    
+    #linkcart a {
+        text-decoration: none;
+        color: white;
+        font-size: 20px;
+    }
+</style>
+<link rel="stylesheet" href="/static/assets/css/card.css"> {% endblock %} {% block body %}
+<div class="modal" tabindex="-1" id='filterModal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add filters</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select class="form-control" id="category">
+                        <option value="" selected>All</option>
+                        <option value="Novel">Novel</option>
+                        <option value="Religion">Religion</option>
+                        <option value="Literature">Literature</option>
+                        <option value="Comics">Comics</option>
+                        <option value="Textbook">Textbook</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="distributor">Distributor</label>
+                    <select class="form-control" id="distributor">
+                        <option value="" selected>All</option>
+                        <option value="Iskcon_dwarka">Iskcon Books</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Author">Author</label>
+                    <select class="form-control" id="author">
+                        <option value="" selected>All</option>
+                        <option value="chetan bhagat">Chetan Bhagat</option>
+                        <option value="shashi tharoor">Shashi Tharoor</option>
+                        <option value="arundhati roy">Arundhati Roy</option>
+                        <option value="ruskin bond">Ruskin bond</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" id='filterbtn'>Filter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="main-banner">
+    <div class="btn-toolbar mb-5 p-3 justify-content-between bg-secondary" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
+            <button type="button" class="btn btn-primary" data-toggle='modal' data-target="#filterModal">Add
+                filter</button>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <button class="btn btn-success my-0 my-sm-0" id='searchbtn' type="submit">Search</button>
+            </div>
+            <input type="text" class="form-control" placeholder="Search your book" id='searchbar' aria-label="Input group example" aria-describedby="btnGroupAddon2">
+        </div>
+    </div>
+    <section class="main">
+        <div class="section-heading">
+            <h1>Novel</h1>
+        </div>
+        <section class="bookalbum">
+            {% for fst in novel %}
+            <div class="bookcard">
+                <div class="imgfield"><img src="/media/{{fst.photo}}" alt="{{fst.name}}"></div>
+                <div class="infofield">
+                    <h3>Name: {{fst.name}}</h3>
+                    <p>Author: {{fst.author}}</p>
+                    <p>Price: {{fst.price}}</p>
+                    <p>Category: {{fst.category}}</p>
+                    <p>Stock: {{fst.stock}}</p>
+                </div>
+                {% if fst.stock %}
+                <div class="actionfield">
+                    <button class="addbook" distributor='{{fst.distributor}}' bookid='{{fst.bookid}}'>Add</button>
+                </div>
+                {% else %}
+                <div class="actionfield">
+                    <button class="addbook btn-secondary" disabled>Add</button>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="border-rounded-button">
+                                    <a href="/reader/viewbook/novel">view more...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-heading">
+            <h1>Thriller</h1>
+        </div>
+        <section class="bookalbum">
+            {% for fst in thriller %}
+            <div class="bookcard">
+                <div class="imgfield"><img src="/media/{{fst.photo}}" alt="{{fst.name}}"></div>
+                <div class="infofield">
+                    <h3>Name: {{fst.name}}</h3>
+                    <p>Author: {{fst.author}}</p>
+                    <p>Price: {{fst.price}}</p>
+                    <p>Category: {{fst.category}}</p>
+                    <p>Stock: {{fst.stock}}</p>
+                </div>
+                {% if fst.stock %}
+                <div class="actionfield">
+                    <button class="addbook" distributor='{{fst.distributor}}' bookid='{{fst.bookid}}'>Add</button>
+                </div>
+                {% else %}
+                <div class="actionfield">
+                    <button class="addbook btn-secondary" disabled>Add</button>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="border-rounded-button">
+                                    <a href="/reader/viewbook/thriller">view more...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-heading">
+            <h1>Exam</h1>
+        </div>
+        <section class="bookalbum">
+            {% for fst in exam %}
+            <div class="bookcard">
+                <div class="imgfield"><img src="/media/{{fst.photo}}" alt="{{fst.name}}"></div>
+                <div class="infofield">
+                    <h3>Name: {{fst.name}}</h3>
+                    <p>Author: {{fst.author}}</p>
+                    <p>Price: {{fst.price}}</p>
+                    <p>Category: {{fst.category}}</p>
+                    <p>Stock: {{fst.stock}}</p>
+                </div>
+                {% if fst.stock %}
+                <div class="actionfield">
+                    <button class="addbook" distributor='{{fst.distributor}}' bookid='{{fst.bookid}}'>Add</button>
+                </div>
+                {% else %}
+                <div class="actionfield">
+                    <button class="addbook btn-secondary" disabled>Add</button>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="border-rounded-button">
+                                    <a href="/reader/viewbook/exam">view more...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-heading">
+            <h1>Literature</h1>
+        </div>
+        <section class="bookalbum">
+            {% for fst in literature %}
+            <div class="bookcard">
+                <div class="imgfield"><img src="/media/{{fst.photo}}" alt="{{fst.name}}"></div>
+                <div class="infofield">
+                    <h3>Name: {{fst.name}}</h3>
+                    <p>Author: {{fst.author}}</p>
+                    <p>Price: {{fst.price}}</p>
+                    <p>Category: {{fst.category}}</p>
+                    <p>Stock: {{fst.stock}}</p>
+                </div>
+                {% if fst.stock %}
+                <div class="actionfield">
+                    <button class="addbook" distributor='{{fst.distributor}}' bookid='{{fst.bookid}}'>Add</button>
+                </div>
+                {% else %}
+                <div class="actionfield">
+                    <button class="addbook btn-secondary" disabled>Add</button>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="border-rounded-button">
+                                    <a href="/reader/viewbook/literature">view more...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-heading">
+            <h1>Comics</h1>
+        </div>
+        <section class="bookalbum">
+            {% for fst in comics %}
+            <div class="bookcard">
+                <div class="imgfield"><img src="/media/{{fst.photo}}" alt="{{fst.name}}"></div>
+                <div class="infofield">
+                    <h3>Name: {{fst.name}}</h3>
+                    <p>Author: {{fst.author}}</p>
+                    <p>Price: {{fst.price}}</p>
+                    <p>Category: {{fst.category}}</p>
+                    <p>Stock: {{fst.stock}}</p>
+                </div>
+                {% if fst.stock %}
+                <div class="actionfield">
+                    <button class="addbook" distributor='{{fst.distributor}}' bookid='{{fst.bookid}}'>Add</button>
+                </div>
+                {% else %}
+                <div class="actionfield">
+                    <button class="addbook btn-secondary" disabled>Add</button>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="border-rounded-button">
+                                    <a href="/reader/viewbook/comics">view more...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </section>
+    <a href="/reader/view_order">
+        <div id="linkcart">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path
+                    d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z" />
+            </svg>
+        </div>
+    </a>
+    {% endblock %} {% block script %}
+    <script src='/static/assets/js/order.js'></script>
+    {% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block body %}
+<section class="main-banner">
+    <div class="page-heading">
+        <h1>Your Distributors</h1>
+    </div>
+    <section class='distributorlist'>
+
+    </section>
+    <section class="tables">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>Previous Orders</h2>
+                    </div>
+                    <div class="default-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <th>Time</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ord in order %}
+                                <tr>
+                                    <td>{{ord.orderId}}</td>
+                                    <td>{{ord.tme}}</td>
+                                    <td>
+                                        <div class="filled-rectangle-button">
+                                            <a href="/reader/view_order/{{ord.orderId}}">View</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+{% endblock %} {% block script %}
+<script src="/static/assets/js/cart.js"></script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %} {% block body %}
+<section class="contact-form">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="section-heading">
+                <h1 class="p-2 text-center">Create your account</h1>
+            </div>
+            <div class="Error col-md-12">
+                <p class="text-danger" style="text-transform: capitalize;"></p>
+            </div>
+            <div class="col-md-12">
+                <form action="/reader/signup" method="post" class="jsform">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="email" type="text" class="form-control" id="email" placeholder="Your email..." required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="contact" type="text" class="form-control" id="contact" placeholder="Your contact..." required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="age" type="number" class="form-control" id="age" placeholder="Your age..." required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="username" type="text" class="form-control" id="username" placeholder="Your username..." required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="password" type="password" class="form-control" id="password" placeholder="Your password..." required="">
+                            </fieldset>
+                        </div>
+
+                        <div class="col-md-12" id='lastchild'>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button type="submit" id="form-submit" class="button">Signup</button>
+                                </div>{% if type == 'reader' %}
+                                <div class="primary-button col-md-3">
+                                    <a href="/reader/login">Login Instead</a>
+                                </div>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %} {% block script %}
+<script src="/static/assets/js/form.js"></script>
+{% endblock %}

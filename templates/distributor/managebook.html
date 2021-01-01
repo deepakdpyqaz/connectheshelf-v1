@@ -1,0 +1,83 @@
+{% extends 'base.html' %} {% block body %}
+<!-- Tables -->
+<div class="modal" id="myModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add book</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/distributor/view" method="POST">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Book Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Book name...">
+                    </div>
+                    <div class="form-group">
+                        <label for="author">Author Name</label>
+                        <input type="text" class="form-control" id="author" name="author" placeholder="Author name...">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Select type</label>
+                        <select class="form-control" name="book_type" id="type">
+                        <option selected value="buy">Sell</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="Submit" class="btn btn-primary">Proceed</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<section class="tables">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h2>Sell book</h2>
+                </div>
+                <div class="col-md-12">
+                    <div class="filled-rectangle-button">
+                        <a href="#" data-toggle="modal" data-target="#myModal"> Add new </a>
+                    </div>
+                </div>
+                <div class="default-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Author/publication</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for book in bk %}
+                            <tr>
+                                <td>{{book.name}}</td>
+                                <td>{{book.author}}</td>
+                                <td>
+                                    <div class="filled-rectangle-button">
+                                        <a href="/distributor/view/{{book.id}}">View</a>
+                                    </div>
+                                    <div class="filled-rectangle-button">
+                                        <a href="/distributor/delete/{{book.id}}" class="bg-danger">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

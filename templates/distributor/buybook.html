@@ -1,0 +1,105 @@
+{% extends 'base.html' %} {% block body %}
+<section class="forms">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h1>Sell book</h1>
+                </div>
+                <div class="Error col-md-12">
+                    <p class="text-danger" style="text-transform: capitalize;"></p>
+                </div>
+                <form id="contact" action="/distributor/editbook" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label>Name:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input type="text" class="form-control" name="name" placeholder="Name..." required="" value='{{bk.name}}'>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="author">Author:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="author" type="text" class="form-control" placeholder="Author..." required="" value='{{bk.author}}'>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="category">Category:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="category" type="text" class="form-control" placeholder="Category..." required="" value='{{bk.category}}'>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label>Stock:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input type="number" class="form-control" placeholder="Stock..." value='{{bkb.stock}}' name="stock" required>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label>Price:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input type="number" name="price" class="form-control" placeholder="Price..." required="" value={{bkb.price}}>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="photo">Change Photo:</label>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input type='file' name='photo'>
+                            </fieldset>
+                        </div>
+                        <div>
+                            <fieldset>
+                                <img src="/media/{{bk.photo}} " alt=" " height="200px ">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6 d-none my-4">
+                            <fieldset>
+                                <input type="text " name="rating " class="form-control " value='{{bk.rating}}'>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6 d-none ">
+                            <fieldset>
+                                <input type="text " name="book_type " class="form-control " value='{{bk.book_type}}'>
+                                <input type="text " name="buybook_id " class="form-control " value='{{bkb.id}}'>
+                                <input type="text " name="book_id " class="form-control " value='{{bk.id}}'>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-md-12 my-4">
+                            <button type="submit " id="form-submit " class="button ">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %} {% block script %}
+<script src="/static/assets/js/form.js "></script>
+{% endblock %}
