@@ -5,13 +5,13 @@ from django.utils.html import strip_tags
 from django.template import loader
 from django.template.loader import render_to_string
 # Create your views here.
-senderMail='deepprak2001@gmail.com'
+senderMail='connectheshelf@gmail.com'
 def home(request):
     params={}
     if('reader' in request.session):
         actions=[{"name":"view books","link":""},{"name":"profile","link":"profile"},{"name":"request","link":"request"},{"name":"orders and requests","link":"view_order"}]
         params={'actions':actions,'type':'reader'}
-    if('distrbutor' in request.session):
+    if('distributor' in request.session):
         actions=[{'name':'profile','link':''},{'name':'Manage books','link':'managebooks'},{'name':'View orders','link':'vieworders'}]
         params={'actions':actions,'type':'distributor'}
     return render(request,'index.html',params)
@@ -29,7 +29,7 @@ def donate(request):
         if('reader' in request.session):
             actions=[{"name":"view books","link":""},{"name":"profile","link":"profile"},{"name":"request","link":"request"},{"name":"orders and requests","link":"view_order"}]
             params={'actions':actions,'type':'reader'}
-        if('distrbutor' in request.session):
+        if('distributor' in request.session):
             actions=[{'name':'profile','link':''},{'name':'Manage books','link':'managebooks'},{'name':'View orders','link':'vieworders'}]
             params={'actions':actions,'type':'distributor'}
         return render(request,'donate.html',params)
@@ -52,7 +52,7 @@ def contact(request):
         if('reader' in request.session):
             actions=[{"name":"view books","link":""},{"name":"profile","link":"profile"},{"name":"request","link":"request"},{"name":"orders and requests","link":"view_order"}]
             params={'actions':actions,'type':'reader'}
-        if('distrbutor' in request.session):
+        if('distributor' in request.session):
             actions=[{'name':'profile','link':''},{'name':'Manage books','link':'managebooks'},{'name':'View orders','link':'vieworders'}]
             params={'actions':actions,'type':'distributor'}
         return render(request,'contact.html',params)

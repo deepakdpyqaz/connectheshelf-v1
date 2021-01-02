@@ -11,12 +11,12 @@ import random
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
 from distributor.extrafunctions import encrypter
-from distributor.models import Book,Buybook,Distributor,orderbook,orderreader,nocod,cod
+from distributor.models import Book,Buybook,Distributor,orderbook,orderreader,nocod,cod,Payment
 from reader.serializers import Bookserializer
 import time
 from django.utils import timezone
 actions=[{"name":"view books","link":""},{"name":"profile","link":"profile"},{"name":"request","link":"request"},{"name":"orders and requests","link":"view_order"}]
-senderMail='deepprak2001@gmail.com'
+senderMail='connectheshelf@gmail.com'
 # Create your views here.
 
 def combinemodel(books):
@@ -166,7 +166,15 @@ def viewbook(request):
         if('reader' in request.session):
             params={'actions':actions,'type':'reader'}
         else:
-            params={'type':'reader'}
+            params={}
+            if('reader' in request.session):
+                 actins=[{"name":"view books","link":""},{"name":"profile","link":"profile"},{"name":"request","link":"request"},{"name":"orders and requests","link":"view_order"}]
+                 params={'actions':actins,'type':'reader'}
+            if('distributor' in request.session):
+                 actins=[{'name':'profile','link':''},{'name':'Manage books','link':'managebooks'},{'name':'View orders','link':'vieworders'}]
+                 params={'actions':actins,'type':'distributor'}
+            else:
+                 params={'type':'reader'}
         fst = Book.objects.filter(category='novel')[::10]
         params['novel']=combinemodel(fst)
         fst=Book.objects.filter(category='literature')[::2]
@@ -275,7 +283,9 @@ def payment(request,distributor):
             return render(request,'reader/checkoutcts.html',params)
         else:
             rdr=Reader.objects.filter(username=request.session['reader']).first()
-            params={'address':rdr.address,'distributor':distributor,'actions':actions,'type':'reader'}
+            dist=Distributor.objects.filter(username=distributor).first()
+            pyment=Payment.objects.filter(username=dist).first()
+            params={'address':rdr.address,'distributor':distributor,'payment':pyment.paymentinfo,'actions':actions,'type':'reader'}
             return render(request, 'reader/checkoutother.html', params)
     if(request.method=='POST'):
         if(distributor.lower()=='connectheshelf'):

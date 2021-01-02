@@ -27,8 +27,9 @@ SECRET_KEY = 'xfdg^0lr=9yxjsii7l&7@2n@)!u-8cc1a(rxewaa5s25hduq=x'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.43.190',
-    '127.0.0.1',
+     '65.0.235.215',
+    'connectheshelf.com',
+    'www.connectheshelf.com',
     'localhost'
 ]
 
@@ -136,9 +137,9 @@ MEDIA_URL='/media/'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = 'deepprak2001@gmail.com'
+EMAIL_HOST_USER = 'connectheshelf@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = 'pass@word'
+EMAIL_HOST_PASSWORD = 'shelf@connect'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
