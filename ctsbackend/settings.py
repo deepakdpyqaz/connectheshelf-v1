@@ -30,7 +30,8 @@ ALLOWED_HOSTS = [
      '65.0.235.215',
     'connectheshelf.com',
     'www.connectheshelf.com',
-    'localhost'
+    'localhost',
+    '127.0.0.1'
 ]
 
 
