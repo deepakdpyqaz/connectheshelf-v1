@@ -224,7 +224,16 @@ def viewcategory(request,category):
     if('reader' in request.session):
         params={'actions':actions,'type':'reader'}
     else:
-        params={'type':'reader'}
+         params={}
+         if('reader' in request.session):
+                 actins=[{"name":"view books","link":""},{"name":"profile","link":"profile"},{"name":"request","link":"request"},{"name":"orders and requests","link":"view_order"}]
+                 params={'actions':actins,'type':'reader'}
+         if('distributor' in request.session):
+                 actins=[{'name':'profile','link':''},{'name':'Manage books','link':'managebooks'},{'name':'View orders','link':'vieworders'}]
+                 params={'actions':actins,'type':'distributor'}
+         else:
+                 params={'type':'reader'}
+
     fst = Book.objects.filter(category__icontains=category)
     params['books']=combinemodel(fst)
     params['title']=category
@@ -234,7 +243,16 @@ def viewdistributor(request,name):
     if('reader' in request.session):
         params={'actions':actions,'type':'reader'}
     else:
-        params={'type':'reader'}
+         params={}
+         if('reader' in request.session):
+                 actins=[{"name":"view books","link":""},{"name":"profile","link":"profile"},{"name":"request","link":"request"},{"name":"orders and requests","link":"view_order"}]
+                 params={'actions':actins,'type':'reader'}
+         if('distributor' in request.session):
+                 actins=[{'name':'profile','link':''},{'name':'Manage books','link':'managebooks'},{'name':'View orders','link':'vieworders'}]
+                 params={'actions':actins,'type':'distributor'}
+         else:
+                 params={'type':'reader'}
+
     user=Distributor.objects.filter(name=name).first()
     fst = Book.objects.filter(username=user)
     params['books']=combinemodel(fst)
