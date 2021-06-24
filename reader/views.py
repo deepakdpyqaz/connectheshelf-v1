@@ -268,6 +268,7 @@ def view_order(request):
             order=list(orderreader.objects.filter(reader=rdr))[::-1]
             params['order']=order
             return render(request,'reader/cart.html',params)
+    return redirect('reader_login')
 
 def view_order_id(request,orderId):
     if('reader' in request.session):
@@ -280,6 +281,7 @@ def view_order_id(request,orderId):
                 return render(request,'reader/vieworder.html',params)
         except:
             return HttpResponse('page not found')
+    return redirect('reader_login')
         
 @api_view(['GET','POST'])
 def getbook(request):
