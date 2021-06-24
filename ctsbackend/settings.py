@@ -31,7 +31,9 @@ ALLOWED_HOSTS = [
     'connectheshelf.com',
     'www.connectheshelf.com',
     'localhost',
-    '127.0.0.1'
+    '127.0.0.1',
+    'templatects.herokuapp.com',
+    'www.templatects.herokuapp.com'
 ]
 
 
