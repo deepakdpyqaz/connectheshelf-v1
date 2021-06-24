@@ -39,7 +39,7 @@ def login(request):
     if('reader' in request.session):
         return redirect('reader_home')
     if(request.method == 'GET'):
-        params = {'actions': actions, 'type': 'reader'}
+        params = {'actions': [], 'type': 'reader'}
         return render(request, 'login.html', params)
     if(request.method == 'POST'):
         username = request.data['username']
@@ -67,7 +67,7 @@ def signup(request):
     if('reader' in request.session):
         return redirect('reader_home')
     if(request.method == 'GET'):
-        params = {'actions': actions, 'type': 'reader', 'Error': False}
+        params = {'actions': [], 'type': 'reader', 'Error': False}
         return render(request, 'reader/signup.html', params)
     if(request.method == 'POST'):
         name = request.data['name']
