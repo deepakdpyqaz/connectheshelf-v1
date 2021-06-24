@@ -2,3 +2,6 @@ data/
 old/
 /reader/cts
 /reader/cts.pub
+env/
+*/__pycache__/*
+*/migrations/*
