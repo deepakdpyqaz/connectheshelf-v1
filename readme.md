@@ -28,7 +28,6 @@ python manage.py runserver
 1. Signup: 
   use OTP as *123456*
   
- 2. Login
- 
- Username: user@mail.com
+ 2. Login \
+ Username: user@mail.com \
  Password: password
