@@ -76,7 +76,8 @@ def signup(request):
         username = request.data['username']
         password = request.data['password']
         age = request.data['age']
-        otp = random.randint(10000, 999999)
+        # otp = random.randint(10000, 999999)
+        otp = 123456
         rdr = Reader.objects.filter(username__iexact=username)
         Error = []
         if(len(rdr) != 0):
@@ -96,9 +97,9 @@ def signup(request):
         else:
             treader=Treader(username=username,name=name,contact=contact,age=age,email=email,password=password,otp=otp,status='pending')
             treader.save()
-            html_message = render_to_string('mail/otp.html', {'name': name, 'otp': otp})
-            plain_message = strip_tags(html_message)
-            send_mail('ConnecTheShelf verification', plain_message, senderMail,[email], html_message=html_message, fail_silently=False)
+            # html_message = render_to_string('mail/otp.html', {'name': name, 'otp': otp})
+            # plain_message = strip_tags(html_message)
+            # send_mail('ConnecTheShelf verification', plain_message, senderMail,[email], html_message=html_message, fail_silently=False)
             params={'verified':True,'url':False,'otp':True,'callback':'/reader/verify'}
             return JsonResponse(params)
 
